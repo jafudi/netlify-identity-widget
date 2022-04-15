@@ -13,6 +13,11 @@ describe("translations", () => {
     expect(getTranslation("log_in", "en")).toEqual("Log in");
   });
 
+  it("should return translation for 'de' locale", () => {
+    const { getTranslation } = require("./");
+    expect(getTranslation("log_in", "de")).toEqual("Log in");
+  });
+
   it("should return translation for 'fr' locale", () => {
     const { getTranslation } = require("./");
     expect(getTranslation("log_in", "fr")).toEqual("Connexion");
@@ -56,6 +61,7 @@ describe("translations", () => {
   it("should default to 'en' on missing key", () => {
     jest.mock("./en.json", () => ({ log_in: "Log in" }));
     jest.mock("./fr.json", () => ({}));
+    jest.mock("./de.json", () => ({}));
     jest.mock("./hu.json", () => ({}));
     jest.mock("./es.json", () => ({}));
     jest.mock("./pt.json", () => ({}));
@@ -66,6 +72,7 @@ describe("translations", () => {
     const { getTranslation } = require("./");
     expect(getTranslation("log_in")).toEqual("Log in");
     expect(getTranslation("log_in", "fr")).toEqual("Log in");
+    expect(getTranslation("log_in", "de")).toEqual("Log in");
     expect(getTranslation("log_in", "hu")).toEqual("Log in");
     expect(getTranslation("log_in", "es")).toEqual("Log in");
     expect(getTranslation("log_in", "pt")).toEqual("Log in");
